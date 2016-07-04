@@ -17,7 +17,8 @@ class GaussGas():
     def sample( self, num_samples ):
         # get fitness of every particle
         fitness = np.array( list( self.evaluate(p) for p in self.particles ) )
-        print( 'average fitness:', np.mean( fitness ) )
+        print( '\taverage fitness:', np.mean( fitness ) )
+        print( '\tparticle variance:', np.var( self.particles ) )
         #print('fitness[0]:', fitness[0])
         # MAYBE this is unnecessary since we're messing with covariance anyway... it might help but it definitely complicates things
         # removing it could help by preventing premature convergence as errant particles coalesce around more optimal ones
@@ -70,6 +71,7 @@ def main():
             size=num_particles
         ), closeness )
     for i in range( num_iterations ):
+        print(i)
         g.update()
     print( g.particles )
     
